@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#F8FAF9">
+  <title>获得植物印章</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      min-height: 100dvh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg, #F8FAF9);
+      color: var(--ink, #24372E);
+      transition: background-color 260ms ease;
+    }
+
+    .stamp {
+      width: min(420px, calc(100vw - 48px));
+      padding: 36px 32px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 36px;
+      box-shadow: 0 18px 44px rgba(36, 74, 58, 0.13);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 20px;
+      background: var(--bg);
+      color: var(--ink);
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .plant {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 180px;
+      height: 180px;
+      margin: 24px auto 20px;
+      background: var(--bg);
+      border-radius: 999px;
+    }
+
+    .plant img {
+      width: 130px;
+      height: 128px;
+      object-fit: contain;
+    }
+
+    .plant::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 2px dashed currentColor;
+      border-radius: 999px;
+      opacity: 0.36;
+    }
+
+    .name {
+      font-family: "Songti SC", "SimSun", serif;
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .meta {
+      font-size: 15px;
+      opacity: 0.68;
+      margin-bottom: 20px;
+    }
+
+    .hint {
+      font-size: 13px;
+      opacity: 0.58;
+    }
+
+    .error {
+      padding: 28px;
+      background: #FDF3F3;
+      color: #A14B4B;
+      border-radius: 28px;
+    }
+  </style>
+</head>
+<body>
+  <main class="stamp" id="page">
+    <span class="badge" id="badge">临时集章页</span>
+    <div class="plant">
+      <img id="plant-image" alt="">
+    </div>
+    <h1 class="name" id="plant-name">获得植物印章</h1>
+    <p class="meta" id="plant-title"></p>
+    <p class="hint">长按截图保存，可在终点向工作人员展示。</p>
+  </main>
+
+  <script>
+    const PLANTS = [
+      {
+        name: "粉黛",
+        title: "秋日的绒云",
+        image: "plants/1.png",
+        bg: "#F5DDE4",
+        ink: "#B3667F"
+      },
+      {
+        name: "荷花",
+        title: "水面的灵感",
+        image: "plants/2.png",
+        bg: "#F3DEDA",
+        ink: "#A75D66"
+      },
+      {
+        name: "石蒜",
+        title: "花叶不相见",
+        image: "plants/3.png",
+        bg: "#F6D6D6",
+        ink: "#A44A4D"
+      },
+      {
+        name: "凌霄",
+        title: "向上的花瀑",
+        image: "plants/4.png",
+        bg: "#FBDAC6",
+        ink: "#B5613C"
+      },
+      {
+        name: "紫薇",
+        title: "百日盛放",
+        image: "plants/5.png",
+        bg: "#EEE3F4",
+        ink: "#7B5F9E"
+      }
+    ];
+
+    const index = Number(new URLSearchParams(location.search).get("plant")) - 1;
+    const plant = PLANTS[index];
+    const page = document.getElementById("page");
+
+    if (!plant) {
+      page.className = "error";
+      page.innerHTML = `<h1>页面参数错误</h1><p class="hint">请使用现场活动二维码重新打开。</p>`;
+    } else {
+      document.documentElement.style.setProperty("--bg", plant.bg);
+      document.documentElement.style.setProperty("--ink", plant.ink);
+      document.getElementById("badge").textContent = `已获得植物章 NO.0${index + 1}`;
+      document.getElementById("plant-image").src = plant.image;
+      document.getElementById("plant-image").alt = plant.name + "植物印章";
+      document.getElementById("plant-name").textContent = plant.name;
+      document.getElementById("plant-title").textContent = plant.title;
+    }
+  </script>
+</body>
+</html>
