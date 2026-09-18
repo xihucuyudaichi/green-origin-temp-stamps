@@ -80,6 +80,12 @@
     .meta {
       font-size: 15px;
       opacity: 0.68;
+      margin-bottom: 8px;
+    }
+
+    .activity {
+      font-size: 14px;
+      opacity: 0.68;
       margin-bottom: 20px;
     }
 
@@ -104,6 +110,7 @@
     </div>
     <h1 class="name" id="plant-name">获得植物印章</h1>
     <p class="meta" id="plant-title"></p>
+    <p class="activity" id="plant-activity"></p>
     <p class="hint">长按截图保存，可在终点向工作人员展示。</p>
   </main>
 
@@ -112,6 +119,7 @@
       {
         name: "粉黛",
         title: "秋日的绒云",
+        activity: "筷子夹球分类",
         image: "plants/1.png",
         bg: "#F5DDE4",
         ink: "#B3667F"
@@ -119,6 +127,7 @@
       {
         name: "荷花",
         title: "水面的灵感",
+        activity: "自然寻宝",
         image: "plants/2.png",
         bg: "#F3DEDA",
         ink: "#A75D66"
@@ -126,6 +135,7 @@
       {
         name: "石蒜",
         title: "花叶不相见",
+        activity: "水拓丝巾",
         image: "plants/3.png",
         bg: "#F6D6D6",
         ink: "#A44A4D"
@@ -133,6 +143,7 @@
       {
         name: "凌霄",
         title: "向上的花瀑",
+        activity: "Plogging 清洁",
         image: "plants/4.png",
         bg: "#FBDAC6",
         ink: "#B5613C"
@@ -140,6 +151,7 @@
       {
         name: "紫薇",
         title: "百日盛放",
+        activity: "水检 / 讲座",
         image: "plants/5.png",
         bg: "#EEE3F4",
         ink: "#7B5F9E"
@@ -161,6 +173,7 @@
       document.getElementById("plant-image").alt = plant.name + "植物印章";
       document.getElementById("plant-name").textContent = plant.name;
       document.getElementById("plant-title").textContent = plant.title;
+      document.getElementById("plant-activity").textContent = "活动：" + plant.activity;
     }
   </script>
 </body>
