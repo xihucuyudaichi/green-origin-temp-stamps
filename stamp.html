@@ -84,9 +84,30 @@
     }
 
     .activity {
-      font-size: 14px;
-      opacity: 0.68;
-      margin-bottom: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      padding: 9px 18px;
+      background: var(--bg);
+      border: 2px solid currentColor;
+      border-radius: 999px;
+      color: var(--ink);
+      font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+
+    .activity .tag {
+      padding: 3px 10px;
+      background: var(--ink);
+      color: var(--bg);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
     }
 
     .hint {
@@ -110,7 +131,7 @@
     </div>
     <h1 class="name" id="plant-name">获得植物印章</h1>
     <p class="meta" id="plant-title"></p>
-    <p class="activity" id="plant-activity"></p>
+    <p class="activity" id="plant-activity"><span class="tag">活动</span><span id="plant-activity-name"></span></p>
     <p class="hint">长按截图保存，可在终点向工作人员展示。</p>
   </main>
 
@@ -173,7 +194,7 @@
       document.getElementById("plant-image").alt = plant.name + "植物印章";
       document.getElementById("plant-name").textContent = plant.name;
       document.getElementById("plant-title").textContent = plant.title;
-      document.getElementById("plant-activity").textContent = "活动：" + plant.activity;
+      document.getElementById("plant-activity-name").textContent = plant.activity;
     }
   </script>
 </body>
